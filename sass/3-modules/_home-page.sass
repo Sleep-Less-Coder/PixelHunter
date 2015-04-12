@@ -1,0 +1,124 @@
+// Styles for elements seen on home(index) page
+
+.spacer
+	height: 50px
+
+.site-content
+	+outer-container($container-width)
+
+	.content-area
+		ul li, ol li, dl, table 
+			font-size: 18px
+
+	.post
+		margin-bottom: 80px
+		margin-left: 10px
+		margin-right: 10px
+		background-color: #fff
+		padding: 30px
+		border-radius: 3px
+		box-shadow: 0px 3px 3px rgba(0,0,0,0.1)
+		//overflow: hidden
+		+clearfix
+				
+		img, figure
+			max-width: 100%
+
+		.entry-header
+			h1
+				@extend %post-h1
+		p
+			@extend %post-p
+
+		.post-info
+			@extend %post-info
+	
+		.btn-read-more
+			display: inline-block
+			float: right
+			
+			a
+				color: #aaa
+				display: inline-block
+				border: 2px solid #aaa
+				padding: 5px 20px
+				border-radius: 50px
+				font:
+					weight: bold
+				+transition
+
+				&:hover
+					background-color:  $main-theme-color
+					color: #fff
+					border-color: $main-theme-color
+
+		.post-thumbnail
+			margin-top: 12px
+			//width: 325px
+			+span-columns(4)
+			overflow: hidden
+
+			//mobile
+			@media screen and(max-width: 500px)
+				+span-columns(12)
+
+			img
+				+transition(800ms)
+
+				&:hover
+					+transform(scale(1.2))
+					opacity: 0.8
+
+
+		.post-content
+			+span-columns(8)
+
+			@media screen and(max-width: 500px)
+				+span-columns(12)
+			
+		.sticky
+			+position(absolute, 20px 20px null null)
+			+transform(rotate(30deg))
+			color: #777
+
+			@media screen and (max-width: 500px)
+				font-size: 1em
+
+.nav-previous
+	float: left
+
+.nav-next
+	float: right
+
+.nav-previous, .nav-next 
+	display: inline-block
+	margin-bottom: 80px
+	margin-left: 10px
+	margin-right: 10px
+	background-color: $panel-bg
+	padding: 10px 20px
+	border-radius: 3px
+	
+	a 
+		color: #fff
+		text-transform: uppercase
+
+		&:hover
+			color: #fff
+
+	.meta-nav
+		display: none
+	
+.nav-previous:before
+	content: "\f053"
+	font-family: FontAwesome
+	margin-right: 5px
+	color: #fff
+
+.nav-next:after
+	content: "\f054"
+	font-family: FontAwesome
+	margin-left: 5px
+	color: #fff
+
+	

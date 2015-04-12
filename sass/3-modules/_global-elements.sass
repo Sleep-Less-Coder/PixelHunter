@@ -1,0 +1,54 @@
+/* site wide styles */
+
+/* blockquote styling */
+
+blockquote 
+	font-style: italic
+	background: #f9f9f9
+	border-left: 10px solid #ccc
+	margin: 1.5em 10px
+	padding: 0.5em 10px
+	quotes: "\201C""\201D""\2018""\2019"
+
+blockquote:before 
+	color: #ccc
+	content: open-quote
+	font-size: 4em
+	line-height: 0.1em
+	margin-right: 0.25em
+	vertical-align: -0.4em
+
+blockquote p 
+	display: inline
+
+/* Buttons */
+input[type="button"], input[type="submit"], button 
+	background-color: $panel-bg
+	border: 0
+	border-radius: 3px
+	color: #fff 
+	padding: 5px 10px
+
+	&:hover
+		background-color: darken($panel-bg, 10%)
+
+/* table styling */
+table
+	max-width: 100%
+	margin: 5px 0 5px 0
+
+table tr
+	border-bottom: 1px solid #ccc
+
+table thead, table tfoot
+	font-weight: bold
+	background-color: #eee
+
+table thead tr, table tr:last-child
+	border-bottom: 0
+
+table tr td, table thead th
+	padding: 10px 15px
+
+.wp-calendar
+	max-width: 100%

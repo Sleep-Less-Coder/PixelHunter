@@ -1,0 +1,313 @@
+// Setting Bebas Custom Heading font to all Headings
+
+.post, .site-content
+	h1, h2, h3, h4, h5, h6
+		font-family: Bebas
+		word-spacing: 5px
+		color: $gray-text-color
+
+.site-content
+	h1
+		@extend %post-h1
+	p
+		@extend %post-p
+
+	.post-info
+		@extend %post-info
+
+	img
+		max-width: 100%
+		margin-bottom: 5px
+
+// paginated posts
+
+.post .entry-content .page-links
+	text-transform: uppercase
+	letter-spacing: 2px
+	font-weight: bold
+
+	a
+		opacity: 0.5
+
+
+//post-navigation
+
+.post-navigation
+	+clearfix
+
+	.nav-links
+		.meta-nav
+			display: none
+
+		.nav-previous, .nav-next
+			background-color: fade-out(#fff, 0.3)
+			display: inline-block
+			padding: 5px 20px
+			border-radius: 50px
+			margin-bottom: 10px
+
+			a
+				color: $muted-text
+
+
+		.nav-previous:before
+			content: "\f053"
+			font-family: FontAwesome
+			margin-right: 10px
+			color: $muted-text
+
+		.nav-next:after
+			content: "\f054"
+			font-family: FontAwesome
+			margin-left: 10px
+			color: $muted-text
+
+		.nav-previous
+			float: left
+
+		.nav-next
+			float: right
+
+nav.post-navigation
+	margin-bottom: 80px
+
+// figure and figure captions
+
+.post figure
+	margin: 0
+
+.post figure figcaption
+	margin-bottom: 8px
+
+// wordpress classes that handle alignment (of images) inside post
+
+.alignleft
+	display: inline
+	float: left
+	margin-right: 1.5em !important
+
+.aligncenter
+	clear: both
+	display: block
+	margin-left: auto !important
+	margin-right: auto !important
+
+.alignright
+	display: inline
+	float: right
+	margin-left: 1.5em !important
+
+//Author Bio Styles
+
+.author-bio
+	+outer-container(100%)
+	margin-top: 50px
+	padding: 20px
+	border: 1px solid fade-out($text-color, 0.8)
+
+	@media screen and (max-width: 670px)
+		text-align: center
+
+	.author-avatar
+		+span-columns(2 of 12)
+		text-align: center
+
+		@media screen and (max-width: 670px)
+			+span-columns(12)
+
+		img
+			max-width: 90px
+			border-radius: 50%
+
+	.author-info
+		+span-columns(10 of 12)
+
+		@media screen and (max-width: 670px)
+			+span-columns(12)
+
+		.author-title
+			font-family: Open Sans, sans-serif
+			font-weight: 300
+			margin-top: 0
+
+			a
+				font-weight: bold
+
+		.author-description
+			margin-bottom: 0
+
+		.author-social-icons
+			list-style-type: none
+			padding: 0
+
+			li
+				display: inline-block
+				font-size: 2em
+				margin-right: 10px
+
+				a
+					color: $gray
+
+
+//comment form
+
+#comments form
+	.comment-notes
+		font-size: 12px
+
+	.required
+		color: red
+
+	label
+		display: block
+		margin-bottom: 10px
+
+	input[type="text"],
+	input[type="email"],
+	input[type="url"], textarea
+		width: 420px
+		border: 1px solid transparent
+		border-radius: 3px
+		padding-left: 10px
+
+		&:focus
+			outline: none
+			border: 1px solid $panel-bg
+
+	input
+		height: 40px
+
+
+	textarea
+		resize: none
+
+	.form-allowed-tags
+		display: none
+
+	.form-submit
+		#submit
+			border: 0
+			padding: 5px 20px
+			border-radius: 3px
+			box-shadow: 0 3px fade-out(#000, 0.8)
+			box-sizing: content-box
+			+transition
+
+			&:hover
+				background-color: darken($panel-bg, 10%)
+
+//comments
+
+#comments
+	.comments-title
+		@extend %wide-heading
+		margin: 80px 0 40px 0
+		font-size: 18px
+
+
+		&:before
+			content: "\f086"
+			font-family: FontAwesome
+			background-color: $panel-bg
+			padding: 10px
+			color: #fff
+			border-radius: 3px
+
+	ol
+		list-style: none
+
+	.comment-list
+		padding-left: 0
+		+clearfix
+
+		.comment-metadata
+			font-size: 14px
+			margin-bottom: 10px
+
+			a
+				color: $gray
+
+			span.edit-link
+				margin: 0
+
+		.depth-2, .depth-3, .depth-4, .depth-5, .depth-6, .depth-7, .depth-8, .depth-9, .depth-10
+			margin-left: 5%
+			border: 0
+			margin-bottom: 0
+			margin-top: 0
+
+	.comment-awaiting-moderation
+		font-size: 12px
+		color: $main-theme-color
+		margin: 5px 0 5px 45px
+
+	.comment
+		padding: 10px
+		margin: 80px 0 80px 0
+
+		&:nth-child(1)
+			margin-top: 0
+
+		.comment:after
+			content: " "
+			display: table
+			clear: both
+
+		.comment-body
+			.comment-content
+				margin-left: 45px
+
+				p
+					margin-top: 0
+					margin-bottom: 10px
+
+			.reply
+				a
+					color: #777
+
+				&:hover
+					text-decoration: underline
+
+		img
+			max-width: 60px
+			border-radius: 50%
+			margin-right: 15px
+			float: left
+
+		.comment-content p
+			margin-top: 10px
+
+	.comment-reply-title
+		@extend %wide-heading
+		margin: 80px 0 20px 0
+		font-size: 18px
+
+		&:before
+			content: "\f040"
+			font-family: FontAwesome
+			background-color: $panel-bg
+			padding: 10px
+			color: #fff
+			border-radius: 3px
+			margin-right: 10px
+
+		#cancel-comment-reply-link
+			display: inline-block
+			margin-right: 10px
+			background-color: #4b4b4b
+			letter-spacing: normal
+			padding: 3px 8px
+			border-radius: 10px
+			color: #fff
+
+	p.no-comments
+		background-color: $gray
+		padding: 5px 10px
+		display: inline-block
+		border-radius: 3px
+		color: #fff
+
+		&:before
+			content: '\f071'
+			font-family: FontAwesome
+			margin-right: 8px
