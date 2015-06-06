@@ -1,42 +1,43 @@
 .screen-reader-text
 	display: none
-
-.backdrop
-	background-color: fade-out($main-theme-color, 0.3)
-
+	
 .site-header
 	height: auto
-	background: url('../img/background.jpg') no-repeat center center
-	background-size: cover
 	color: #FFF0FF
 	text-align: center
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
 
-	.site-title
-		padding-top: 80px
-		margin: 0 0 25px 0
 
-		a
-			font-family: Bebas
-			font-size: 68px
+	.site-branding
+		padding: 0 20px 0 20px
+
+		.site-title
+			padding-top: 60px
+			margin: 0 0 3px 0
+
+			a
+				font-family: Bebas
+				font-size: 68px
+				color: $header-text-color
+				word-spacing: 7px
+				line-height: 1.5
+
+				@media screen and(max-width: 500px)
+					font-size: 45px
+
+		.site-description
+			padding-bottom: 80px
+			font-family: Open Sans
+			text-transform: uppercase
+			letter-spacing: 5px
+			font-size: 13px
 			color: $header-text-color
-
-			@media screen and(max-width: 500px)
-				font-size: 45px
-
-	.site-description
-		padding-bottom: 80px
-		font-family: Open Sans
-		text-transform: uppercase
-		letter-spacing: 5px
-		font-size: 13px
-		color: $header-text-color
-		margin-top: 0
+			line-height: 1.5
 
 	.custom-logo img
 		max-width: 130px
-		padding-top: 60px
-		padding-bottom: 60px
+		padding-top: 72px
+		padding-bottom: 72px
 
 	.right-icons
 		+position(absolute, 10px 20px null null)
@@ -102,7 +103,7 @@
 
 	li
 		font-size: 18px
-		padding: 10px
+		padding: 10px 10px 10px 15px
 		border-bottom: 1px solid rgba(0, 0, 0, .1)
 		text-transform: uppercase
 		+transition
@@ -136,7 +137,7 @@
 	position: fixed
 	bottom: 50px
 	right : 50px
-	+triangle(50px, $main-theme-color, up)
+	+triangle(50px, fadeout($main-theme-color, 0.5), up)
 	display : block
 	text-align: center
 	color : #fff

@@ -53,7 +53,7 @@ jQuery(function($) {
 
 	//changing the color of menu icon when it is scrolled below the header
 	$(window).scroll(function(){
-		if($(this).scrollTop() > 180){
+		if($(this).scrollTop() > 272){
 			$('.toggle').addClass('menu-color');
 		}else{
 			$('.toggle').removeClass('menu-color');

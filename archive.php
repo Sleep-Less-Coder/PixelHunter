@@ -24,46 +24,46 @@ get_header(); ?>
 							single_tag_title();
 
 						elseif ( is_author() ) :
-							printf( __( 'Author: %s', 'pixel_hunter' ), '<span class="vcard">' . get_the_author() . '</span>' );
+							printf( __( 'Author: %s', 'pixelhunter' ), '<span class="vcard">' . get_the_author() . '</span>' );
 
 						elseif ( is_day() ) :
-							printf( __( 'Day: %s', 'pixel_hunter' ), '<span>' . get_the_date() . '</span>' );
+							printf( __( 'Day: %s', 'pixelhunter' ), '<span>' . get_the_date() . '</span>' );
 
 						elseif ( is_month() ) :
-							printf( __( 'Month: %s', 'pixel_hunter' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'pixel_hunter' ) ) . '</span>' );
+							printf( __( 'Month: %s', 'pixelhunter' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'pixelhunter' ) ) . '</span>' );
 
 						elseif ( is_year() ) :
-							printf( __( 'Year: %s', 'pixel_hunter' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'pixel_hunter' ) ) . '</span>' );
+							printf( __( 'Year: %s', 'pixelhunter' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'pixelhunter' ) ) . '</span>' );
 
 						elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-							_e( 'Asides', 'pixel_hunter' );
+							_e( 'Asides', 'pixelhunter' );
 
 						elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-							_e( 'Galleries', 'pixel_hunter' );
+							_e( 'Galleries', 'pixelhunter' );
 
 						elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-							_e( 'Images', 'pixel_hunter' );
+							_e( 'Images', 'pixelhunter' );
 
 						elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-							_e( 'Videos', 'pixel_hunter' );
+							_e( 'Videos', 'pixelhunter' );
 
 						elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-							_e( 'Quotes', 'pixel_hunter' );
+							_e( 'Quotes', 'pixelhunter' );
 
 						elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-							_e( 'Links', 'pixel_hunter' );
+							_e( 'Links', 'pixelhunter' );
 
 						elseif ( is_tax( 'post_format', 'post-format-status' ) ) :
-							_e( 'Statuses', 'pixel_hunter' );
+							_e( 'Statuses', 'pixelhunter' );
 
 						elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-							_e( 'Audios', 'pixel_hunter' );
+							_e( 'Audios', 'pixelhunter' );
 
 						elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
-							_e( 'Chats', 'pixel_hunter' );
+							_e( 'Chats', 'pixelhunter' );
 
 						else :
-							_e( 'Archives', 'pixel_hunter' );
+							_e( 'Archives', 'pixelhunter' );
 
 						endif;
 					?>

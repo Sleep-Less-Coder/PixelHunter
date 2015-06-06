@@ -26,12 +26,14 @@ function pixel_hunter_setup() {
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
 	 * If you're building a theme based on PixelHunter, use a find and replace
-	 * to change 'pixel_hunter' to the name of your theme in all the template files
+	 * to change 'pixelhunter' to the name of your theme in all the template files
 	 */
-	load_theme_textdomain( 'pixel_hunter', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'pixelhunter', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
+
+	add_theme_support( 'title-tag' );
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
@@ -45,7 +47,7 @@ function pixel_hunter_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'pixel_hunter' ),
+		'primary' => __( 'Primary Menu', 'pixelhunter' ),
 	) );
 
 	/*
@@ -80,7 +82,7 @@ add_action( 'after_setup_theme', 'pixel_hunter_setup' );
  */
 function pixel_hunter_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'pixel_hunter' ),
+		'name'          => __( 'Sidebar', 'pixelhunter' ),
 		'id'            => 'sidebar-1',
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -99,7 +101,12 @@ function pixel_hunter_scripts() {
 
 	wp_enqueue_script( 'pixel_hunter-functions', get_template_directory_uri() . '/js/functions.js', array('jquery'), '20120206', true );
 
-	wp_enqueue_script( 'pixel_hunter-post-animations', get_template_directory_uri() . '/js/posts-scroll-animations.js', array('jquery'), '20140111', true );
+	//loading only if animations are not disabled
+
+	if(!esc_html(get_theme_mod('pixel_hunter_postanimation')) == 1)
+	{
+		wp_enqueue_script( 'pixel_hunter-post-animations', get_template_directory_uri() . '/js/posts-scroll-animations.js', array('jquery'), '20140111', true );
+	}
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -188,25 +195,17 @@ function pixel_hunter_conditional_styles(){
 	//If page is a single post page
 
 	if(is_single()){
-	echo "<style>.site-content .post-info{margin-bottom: 55px !important;}.content-area .entry-content p:first-child:first-letter{float: left;color: #2E2D33;font-size: 75px;line-height: 60px;padding: 4px 8px 0 3px;}</style>";
+	echo "<style>.site-content .post-info{margin-bottom: 55px !important;}</style>";
+
+		$dropcaps = esc_html(get_theme_mod('pixel_hunter_dropcaps'));
+
+		if(!$dropcaps == 1)
+		{
+			echo "<style>.content-area .entry-content p:first-child:first-letter{float: left;color: #2E2D33;font-size: 75px;line-height: 60px;padding: 4px 8px 0 3px;}</style>";
+		}
 	}
 }
 add_action('wp_head','pixel_hunter_conditional_styles');
-
-/**
- * Adding the options to add different social media for author bio
- */
-function pixel_hunter_add_to_author_profile( $contactmethods ) {
-
-	$contactmethods['rss_url'] = 'RSS URL';
-	$contactmethods['google_profile'] = 'Google Profile URL';
-	$contactmethods['twitter_profile'] = 'Twitter Profile URL';
-	$contactmethods['facebook_profile'] = 'Facebook Profile URL';
-	$contactmethods['linkedin_profile'] = 'Linkedin Profile URL';
-
-	return $contactmethods;
-}
-add_filter( 'user_contactmethods', 'pixel_hunter_add_to_author_profile', 10, 1);
 
 /**
  * Removing hard coding of height and width on post-thumbnail
@@ -223,27 +222,63 @@ add_filter( 'post_thumbnail_html', 'pixel_hunter_remove_img_attr' );
 function pixel_hunter_customizer(){
 
 	//custom header background
-	$header_background = get_theme_mod('pixel_hunter_header_background_upload');
+	$header_background = esc_url(get_theme_mod('pixel_hunter_header_background_upload'));
 
-	if(!empty($header_background))
-		echo "<style>
-				.site-header{
-					background: url('". $header_background ."') no-repeat center center;
-					background-size: cover
-				}
-			 </style>";
+	//only solid fill
+	$header_type = esc_html(get_theme_mod('pixel_hunter_header_color'));
 
 	//primary theme color
-	$primary_theme_color = get_theme_mod('pixel_hunter_primary_theme_color');
+	$primary_theme_color = esc_html(get_theme_mod('pixel_hunter_primary_theme_color'));
 
-	if(!empty($primary_theme_color))
+	//secondary color
+	$secondary_theme_color = esc_html(get_theme_mod('pixel_hunter_secondary_theme_color'));
+
+	//header-sidebar text color
+	$hs_text_color = esc_html(get_theme_mod('pixel_hunter_hs_text_color'));
+
+	//header rgba filter
+	$header_filter = esc_html(get_theme_mod('pixel_hunter_headerfilter'));
+
+	//Giving the user the option to always show the navigation menu. Instead of being off canvas
+	$nav_menu_always_show = esc_html(get_theme_mod('pixel_hunter_nav_menu'));
+
+	//if solid fill is not checked we show a default background. If user has set his/her background
+	//we show it
+
+	if(!$header_type == 1){
+		echo "<style>
+			.site-header{
+				background: url('" . get_template_directory_uri() . "/img/background.jpg') no-repeat center center;
+				background-size: cover;
+			}
+		</style>";
+
+		if(!empty($header_background)){
+			echo "<style>
+					.site-header{
+						background: url('". $header_background ."') no-repeat center center;
+						background-size: cover;
+					}
+				 </style>";
+		}
+	}
+	else
+	{
+		// we change the rgba filter to solid color on backdrop so the color is exactly the user selected
+		echo "<style>
+		.backdrop{
+			background-color: " . $primary_theme_color ." !important;
+		}
+		</style>";
+	}
+
+	
+
+	if(!empty($primary_theme_color)){
 
 	//every element using primary theme color has to be affected
 
 	echo "<style>
-		 .backdrop{
-		 	background-color: rgba(" . pixel_hunter_hex2rgb($primary_theme_color) .",0.7);
-		 }
 
 		 .sidebar li:hover, .site-footer{
 		 	background-color: $primary_theme_color;
@@ -255,6 +290,7 @@ function pixel_hunter_customizer(){
 
 		 .scroll-top{
 		 	border-bottom: 25px solid $primary_theme_color;
+		 	opacity: 0.5;
 		 }
 
 		 .post .btn-read-more a:hover, .no-results .go-home-btn:hover, .error-404 .go-home-btn:hover{
@@ -263,13 +299,11 @@ function pixel_hunter_customizer(){
 		 }
 
 		</style>";
-
-	//secondary color
-	$secondary_theme_color = get_theme_mod('pixel_hunter_secondary_theme_color');
+	}
 
 	if (!empty($secondary_theme_color)){
 
-		//every element secondary theme color has to be affected
+		//every element using secondary theme color has to be affected
 
 		echo "<style>
 			.sidebar, .nav-previous, .nav-next, .widget-area{
@@ -292,6 +326,160 @@ function pixel_hunter_customizer(){
 				border: 1px solid $secondary_theme_color !important;
 			}
 
+		</style>";
+	}
+
+	if(!empty($hs_text_color))
+	{
+		//updating the text color of header/sidebar elements
+		echo "
+			<style>
+				.site-header,
+				.site-header .site-branding .site-title a,
+				.site-header .site-branding .site-description,
+				.toggle,
+				.widget-area aside h1,
+				.sidebar a,
+				.widget-area,
+				.widget-area aside ul li a,
+				.widget-area .social a,
+				.site-footer,
+				.site-footer .site-info a{
+					color: " . $hs_text_color . ";
+				}
+				
+				.sidebar a{
+					opacity: 0.8;
+				}
+
+				.sidebar a:hover{
+					color: " . $hs_text_color . ";
+					opacity: 1;
+				}
+
+				.site-header .search-box button{
+					background-color: " . $hs_text_color . ";
+				}
+
+				.widget_recent_entries ul li:hover, .random-posts-widget ul li:hover{
+					border: 1px solid " . $hs_text_color . "!important;
+					border-left: 5px solid " . $hs_text_color . "!important;	
+				}
+
+				.widget-area .recentcomments a,
+				.widget-area aside ul li a:hover{
+					border-bottom: 1px dotted " . $hs_text_color . ";
+				}
+
+				.menu-color{
+					color: " . $primary_theme_color . "
+				}
+			</style>
+		";
+	}
+
+	// Remove header rgba filter if user doesn't want it. (Enabled by default)
+	if(!$header_filter == 1)
+	{
+		if(!empty($primary_theme_color))
+		{
+			echo "
+				<style>
+					.backdrop{
+					 	background-color: rgba(" . pixel_hunter_hex2rgb($primary_theme_color) .",0.7);
+					 }
+				</style>
+			";
+		}
+		else
+		{
+			echo "
+				<style>
+					.backdrop{
+					 	background-color: rgba(45, 142, 89, 0.7);
+					 }
+				</style>
+			";
+		}
+	}
+
+	//If user is not using the WP title and desc and using his/her own image only for header, we
+	//set header height to at least 272px to make header look consistent(prevent it from colappsing).
+	$blogname = get_bloginfo('name');
+	$blogdesc= get_bloginfo('description');
+
+	if(empty($blogname) && empty($blogdesc))
+	{
+		echo "
+			<style>
+				.site-header{
+					height: 272px;
+				}
+				.backdrop{
+					height: 100%;
+				}
+			</style>
+		";
+	}
+
+	if($nav_menu_always_show == 1)
+	{
+		// we use viewport() JS function to identify the width of the user and then execute code
+		// accordingly. Mobile will be same. We always show the menu only if width is greater than 650px
+
+		echo "<script>
+
+			function viewport() {
+				var e = window, a = 'inner';
+				if (!('innerWidth' in window )) {
+				a = 'client';
+				e = document.documentElement || document.body;
+				}
+				return { width : e[ a+'Width' ] , height : e[ a+'Height' ] };
+			}
+
+			jQuery(document).ready(function(){
+				if (viewport().width >= 650) {
+					jQuery('.sidebar').addClass('sidebar-is-displayed');
+					jQuery('.toggle').remove();
+				}
+			});
+		</script>";
+
+		echo "<style>
+			@media screen and (min-width: 650px){
+				.sidebar{
+					box-shadow: none;
+				}
+				
+				.site-header{
+					padding-left: 250px;
+				}
+
+				.site-content{
+					max-width: 1140px;
+					padding-left: 250px;
+				}
+				
+				.site-footer{
+					padding-left: 250px;
+				}
+
+				.site-footer .site-info{
+					margin-left: 0;
+				}
+			}
+
+			@media screen and (max-width: 1168px){
+				.site-content .post, .site-content .page{
+					margin-left: 10px !important;
+					margin-right: 10px !important;
+				}
+
+				#comments, h1.page-title{
+					padding: 0 10px 0 10px;
+				}
+			}
 		</style>";
 	}
 }

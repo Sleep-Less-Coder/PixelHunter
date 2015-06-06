@@ -11,7 +11,6 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?php wp_title( '|', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <?php wp_head(); ?>
@@ -19,7 +18,7 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
-	<!--<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'pixel_hunter' ); ?></a> -->
+	<!--<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'pixelhunter' ); ?></a> -->
 
 	<header id="masthead" class="site-header" role="banner">
 		<div class="backdrop">
@@ -28,7 +27,7 @@
 				<!--If there is a site logo then display it otherwise display the blog name and discription -->
 				
 				<?php
-					$pixel_hunter_logo = get_theme_mod('pixel_hunter_image_logo_upload');
+					$pixel_hunter_logo = esc_url(get_theme_mod('pixel_hunter_image_logo_upload'));
 					
 					if ( $pixel_hunter_logo ) { ?> 
  						

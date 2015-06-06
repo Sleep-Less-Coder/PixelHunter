@@ -27,7 +27,7 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 	?>
 
 	<aside class="social">
-	<h1><?php _e('Connect With Us', 'pixel_hunter'); ?></h1>
+	<h1><?php _e('Connect With Us', 'pixelhunter'); ?></h1>
 
 	<?php if(!empty($pixel_hunter_facebook)){ ?>
 		<a href="<?php echo esc_url($pixel_hunter_facebook); ?>" target=_blank>
@@ -87,9 +87,9 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 	<?php } ?>
 
 	<!-- Random Posts widget which displays 5 random posts -->
-	<?php if(!get_theme_mod('pixel_hunter_random_posts') == 1){ ?>
+	<?php if(!esc_html(get_theme_mod('pixel_hunter_random_posts')) == 1){ ?>
 		<aside class="random-posts-widget">
-			<h1><?php _e('Random Posts', 'pixel_hunter'); ?></h1>
+			<h1><?php _e('Random Posts', 'pixelhunter'); ?></h1>
 			<ul>
 				<?php
 					$pixel_hunter_args = array('posts_per_page' => 5, 'orderby' => 'rand');

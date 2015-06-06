@@ -50,7 +50,7 @@
 			<div class="entry-content">
 				<?php the_excerpt(); ?>
 				<div class="btn-read-more">
-						<a href="<?php the_permalink(); ?>"><?php _e('Continue Reading', 'pixel_hunter'); ?></a>
+						<a href="<?php the_permalink(); ?>"><?php _e('Continue Reading', 'pixelhunter'); ?></a>
 				</div>
 			</div><!-- .entry-content -->
 

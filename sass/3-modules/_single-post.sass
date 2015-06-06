@@ -6,7 +6,19 @@
 		word-spacing: 5px
 		color: $gray-text-color
 
+	p.post-tags
+		font-weight: bold
+		font-style: italic 
+		margin: 10px 0 10px 0
+		color: $gray
+
+		i 
+			margin-right: 8px 
+		
+
 .site-content
+	word-wrap: break-word
+	
 	h1
 		@extend %post-h1
 	p
@@ -17,7 +29,16 @@
 
 	img
 		max-width: 100%
+		height: auto
 		margin-bottom: 5px
+
+	// figure and figure captions
+	figure
+		margin: 0
+		max-width: 100%
+
+	figure figcaption
+		margin-bottom: 20px
 
 // paginated posts
 
@@ -71,14 +92,6 @@
 nav.post-navigation
 	margin-bottom: 80px
 
-// figure and figure captions
-
-.post figure
-	margin: 0
-
-.post figure figcaption
-	margin-bottom: 8px
-
 // wordpress classes that handle alignment (of images) inside post
 
 .alignleft
@@ -103,7 +116,7 @@ nav.post-navigation
 	+outer-container(100%)
 	margin-top: 50px
 	padding: 20px
-	border: 1px solid fade-out($text-color, 0.8)
+	border: 1px solid fade-out($text-color, 0.9)
 
 	@media screen and (max-width: 670px)
 		text-align: center
@@ -151,7 +164,9 @@ nav.post-navigation
 
 //comment form
 
-#comments form
+#comments form.comment-form
+	margin-bottom: 80px
+
 	.comment-notes
 		font-size: 12px
 
@@ -166,6 +181,7 @@ nav.post-navigation
 	input[type="email"],
 	input[type="url"], textarea
 		width: 420px
+		max-width: 100%
 		border: 1px solid transparent
 		border-radius: 3px
 		padding-left: 10px
@@ -199,6 +215,9 @@ nav.post-navigation
 //comments
 
 #comments
+	@media screen and(max-width: 1000px)
+		padding: 0 10px 0 10px
+
 	.comments-title
 		@extend %wide-heading
 		margin: 80px 0 40px 0
@@ -242,11 +261,16 @@ nav.post-navigation
 		margin: 5px 0 5px 45px
 
 	.comment
-		padding: 10px
 		margin: 80px 0 80px 0
+		background-color: #fff 
+		border-radius: 3px 
+		padding: 10px
 
 		&:nth-child(1)
 			margin-top: 0
+
+		&:last-child
+			margin-bottom: 0
 
 		.comment:after
 			content: " "
@@ -254,6 +278,8 @@ nav.post-navigation
 			clear: both
 
 		.comment-body
+			margin-bottom: 20px
+
 			.comment-content
 				margin-left: 45px
 
@@ -264,9 +290,11 @@ nav.post-navigation
 			.reply
 				a
 					color: #777
+					font-size: 14px
+
 
 				&:hover
-					text-decoration: underline
+					text-decoration: none
 
 		img
 			max-width: 60px
@@ -279,7 +307,7 @@ nav.post-navigation
 
 	.comment-reply-title
 		@extend %wide-heading
-		margin: 80px 0 20px 0
+		margin: 83px 0 20px 0
 		font-size: 18px
 
 		&:before

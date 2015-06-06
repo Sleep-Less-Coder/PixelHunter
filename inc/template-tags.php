@@ -18,15 +18,15 @@ function pixel_hunter_paging_nav() {
 	}
 	?>
 	<nav class="navigation paging-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'pixel_hunter' ); ?></h1>
+		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'pixelhunter' ); ?></h1>
 		<div class="nav-links">
 
 			<?php if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'pixel_hunter' ) ); ?></div>
+			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'pixelhunter' ) ); ?></div>
 			<?php endif; ?>
 
 			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'pixel_hunter' ) ); ?></div>
+			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'pixelhunter' ) ); ?></div>
 			<?php endif; ?>
 
 		</div><!-- .nav-links -->
@@ -49,11 +49,11 @@ function pixel_hunter_post_nav() {
 	}
 	?>
 	<nav class="navigation post-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'pixel_hunter' ); ?></h1>
+		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'pixelhunter' ); ?></h1>
 		<div class="nav-links">
 			<?php
-				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'pixel_hunter' ) );
-				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link',     'pixel_hunter' ) );
+				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'pixelhunter' ) );
+				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link',     'pixelhunter' ) );
 			?>
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->
@@ -79,12 +79,12 @@ function pixel_hunter_posted_on() {
 	);
 
 	$posted_on = sprintf(
-		_x( 'Posted on %s', 'post date', 'pixel_hunter' ),
+		_x( 'Posted on %s', 'post date', 'pixelhunter' ),
 		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 
 	$byline = sprintf(
-		_x( 'by %s', 'post author', 'pixel_hunter' ),
+		_x( 'by %s', 'post author', 'pixelhunter' ),
 		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
 
@@ -101,25 +101,25 @@ function pixel_hunter_entry_footer() {
 	// Hide category and tag text for pages.
 	if ( 'post' == get_post_type() ) {
 		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( __( ', ', 'pixel_hunter' ) );
+		$categories_list = get_the_category_list( __( ', ', 'pixelhunter' ) );
 		if ( $categories_list && pixel_hunter_categorized_blog() ) {
-			printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'pixel_hunter' ) . '</span>', $categories_list );
+			printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'pixelhunter' ) . '</span>', $categories_list );
 		}
 
 		/* translators: used between list items, there is a space after the comma */
-		$tags_list = get_the_tag_list( '', __( ', ', 'pixel_hunter' ) );
+		$tags_list = get_the_tag_list( '', __( ', ', 'pixelhunter' ) );
 		if ( $tags_list ) {
-			printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'pixel_hunter' ) . '</span>', $tags_list );
+			printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'pixelhunter' ) . '</span>', $tags_list );
 		}
 	}
 
 	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 		echo '<span class="comments-link">';
-		comments_popup_link( __( 'Leave a comment', 'pixel_hunter' ), __( '1 Comment', 'pixel_hunter' ), __( '% Comments', 'pixel_hunter' ) );
+		comments_popup_link( __( 'Leave a comment', 'pixelhunter' ), __( '1 Comment', 'pixelhunter' ), __( '% Comments', 'pixelhunter' ) );
 		echo '</span>';
 	}
 
-	edit_post_link( __( 'Edit', 'pixel_hunter' ), '<span class="edit-link">', '</span>' );
+	edit_post_link( __( 'Edit', 'pixelhunter' ), '<span class="edit-link">', '</span>' );
 }
 endif;
 
