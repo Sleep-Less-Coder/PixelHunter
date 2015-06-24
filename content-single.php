@@ -49,7 +49,8 @@
 
 		<!-- showing the tags for the post (if there are any) -->
 		<?php 
-			if(!empty(get_the_tag_list())){ ?>
+			$tags = get_the_tag_list();
+			if(!empty($tags)){ ?>
 				<p class="post-tags">
 					<i class="fa fa-tags"></i><?php echo get_the_tag_list('',', ','');?>
 				</p>

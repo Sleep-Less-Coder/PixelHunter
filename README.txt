@@ -128,3 +128,7 @@ v 0.1.6
 v 0.1.7
 	Support for new WordPress 'title-tag' feature with backwards compatibility.
 	Resolving the text domain problem in customizer settings.
+
+v 0.1.8
+	*IMPORTANT (If PHP version below 5.5)* Fixed the fatal bug which affected the versions of PHP below 5.5 on single post view
+	When no primary color is chosen, fixed the bug of appearing a black filter instead of intended default green one.
